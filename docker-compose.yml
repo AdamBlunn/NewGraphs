@@ -1,0 +1,43 @@
+version: "3"
+services:
+  app:
+    image: localhost:5000/dashboard-graphs
+    container_name: dashboard-graphs
+    build:
+      context: .
+    depends_on:
+      - gridengine
+    #   - mysql
+    #   - minio
+    #   - mailhog
+    # networks:
+    #   - proxy
+    #   - private
+    expose:
+      - "8080"
+    ports: 
+      - "8080:8080"
+  gridengine:
+    image: localhost:5000/dashboard-graphs
+    ports:
+      - "3001:3001"
+    expose:
+      - "3001"
+    command: ["node", "./gridengine.js"]
+  tickets:
+    image: localhost:5000/dashboard-graphs
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    command: ["node", "./index.js"]
+  weather:
+    image: localhost:5000/dashboard-graphs
+    ports:
+      - "3002:3002"
+    expose:
+      - "3002"
+    command: ["node","./weather.js"]
+    
+  
+
