@@ -1,3 +1,4 @@
+// Proxy to get around the CORS Errors that seem to occur with this style of program
 // Listen on a specific host via the HOST environment variable
 var host = process.env.HOST || '0.0.0.0';
 // Listen on a specific port via the PORT environment variable

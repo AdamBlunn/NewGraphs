@@ -7,13 +7,14 @@
     grid-template-columns: repeat(auto-fit,minmax(200px, .75fr));
     grid-gap: 1em;
     position: relative;
+    /* Grid Formatting */
     grid-template-areas: 
     "ti ti li li wh"
     "la la cl ld ld"
     
     /* "ti ti ti ti" */
 }
-
+/* Grid elements */
 .cluster{
     /* grid-row: 2;
     grid-column: 1 */

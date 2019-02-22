@@ -2,6 +2,7 @@
   <div>
     <div class="max-w-sm rounded overflow-hidden">
       <!-- <span id="test"></span> -->
+      <!-- Formatting for the Weather report Component, Displays each data item through {{}} -->
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">Weather Report</div>
         <span id="test" class="text-white text-center text-5xl"></span>
