@@ -12,6 +12,7 @@
 </div>
 </template>
 <script>
+//Set up Dependancies
 var isToday = require('date-fns/is_today')
 var isBefore = require('date-fns/is_before')
 var isAfter = require('date-fns/is_after')
@@ -20,16 +21,18 @@ var addMonths = require('date-fns/add_months')
 var subMonths = require('date-fns/sub_months')
 const axios = require("axios");
 const faker = require('faker')
-import proxy from "../modules/cors-client.js";
+import proxy from "../modules/cors-client.js";//Import proxy server functions
 export default {
   props: ["refreshSeconds", /*"apiconfig"*/],
   mounted() {
+    //Check for demo version
       if (process.env.VUE_APP_ENVIROMENT === 'Demo'){
       setInterval(this.fakeValues,this.refreshSeconds*1000)   
-    }else{
+    }else{ //else run as normal
       setInterval(this.refresh, this.refreshSeconds*1000);
       }
-    let licenceCache = localStorage.getItem("Exiring Licences");
+      //Get values from local storage
+    let licenceCache = localStorage.getItem("Exiring Licences"); 
     if (licenceCache){
       this.licence=JSON.parse(licenceCache)
     }
@@ -41,23 +44,24 @@ export default {
     if(lengthCache){
       this.licenceExpired = JSON.parse(expiredLicencesCache)
     }
-     if (process.env.VUE_APP_ENVIROMENT == 'Demo'){
-      this.fakeValues()
+     if (process.env.VUE_APP_ENVIROMENT == 'Demo'){ //check for dem version
+      this.fakeValues() //generate dummy values 
     }else{this.refresh();}  
   },
   data() {
     return {
+      //initialise varibles
       error:false,
       licence: [{}],
       licenceExpired:[{}],
       numberOfLicences:0,
-      licUrl: process.env.VUE_APP_LICENCE_URL
+      licUrl: process.env.VUE_APP_LICENCE_URL //envriomental variable for Licence URL
       
     };
   },
   methods: {
     refresh() {
-      proxy
+      proxy //Get data through cors proxy
         .get(this.licUrl)
         .then(response => {
           // handle success
@@ -65,7 +69,7 @@ export default {
         //   console.log(response.data)
           const licences = response.data.Data;
           //console.log(licences)
-          const expiringLicenes = licences.filter(lic=>{
+          const expiringLicenes = licences.filter(lic=>{ // filter to display licences that will expire in the next two months 
               const today = new Date();
               const expiryDate = parse(lic.ExpireDate)
               const expiryMonth= addMonths(today,2)
@@ -76,7 +80,7 @@ export default {
 
               return true;
           })
-          const expiredLicences = licences.filter(lic=>{
+          const expiredLicences = licences.filter(lic=>{ //Outdated, can delete safely 
             const today = new Date();
             const expiryDate = parse(lic.ExpireDate)
             const expiryMonth = subMonths(today, 12)
@@ -86,7 +90,7 @@ export default {
             
             return true;           
           })
-          expiringLicenes.sort(function(a, b){
+          expiringLicenes.sort(function(a, b){ //Sort expiring licences in order of the closest to expire. Set dates to a single case and sort.
           var x = a.ExpireDate.toLowerCase();
           var y = b.ExpireDate.toLowerCase();
           if (x < y) {return -1;}
@@ -102,7 +106,7 @@ export default {
           this.error=true;
         });
     },
-    fakeValues(){
+    fakeValues(){ // Generate Dummy Values to populate list 
      let licence2 = [{     
        id:faker.random.number(),
        creator:faker.name.findName(),
@@ -141,7 +145,7 @@ export default {
         
     },
     
-    updateValues(expiringLicences/*, expiredLicences*/){
+    updateValues(expiringLicences/*, expiredLicences*/){ // update values in the list
       this.licence=expiringLicences;
       //this.licenceExpired = expiredLicences
       this.numberOfLicences= expiringLicences.length;

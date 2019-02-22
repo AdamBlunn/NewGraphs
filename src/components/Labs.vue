@@ -1,20 +1,24 @@
 <template>
   <div :class="{'bg-red': error}">
+    <!-- Create Bar graph through apex charts -->
     <apexchart ref="LabsGraph" type="bar" :options="chartOptions" :series="series"></apexchart>
   </div>
 </template>
 <script>
+//Set up dependancies
 const axios = require("axios");
 const faker = require("faker");
 import proxy from "../modules/cors-client.js";
 export default {
   props: ["apiconfig"],
   mounted() {
+    // Check for demo Version
     if (process.env.VUE_APP_ENVIROMENT === "Demo") {
       setInterval(this.fakeValues, 100000);
     } else {
       setInterval(this.refresh, 100000);
     }
+    //Get Lab data through local storage
     let r329cCache = localStorage.getItem("r329");
     let r329AcCache = localStorage.getItem("r392Active");
     let r317cCache = localStorage.getItem("r317");
@@ -31,16 +35,18 @@ export default {
     this.apiconfig.labnames.forEach(name => {
       url.push(this.urlAll + this.apiconfig.labnames[name]);
       url.push(this.urlActive + this.apiconfig.labnames[name]);
-    });
+    }); //Create arry of URLS by combining URL with lab name
     console.log(url);
     if (process.env.VUE_APP_ENVIROMENT == "Demo") {
+      // check for demo version
       this.fakeValues();
     } else {
-      this.getValues();
+      this.getValues(); // proceed normally
     }
   },
   data() {
     return {
+      //assign variables
       error: false,
       r329: 0,
       r329A: 0,
@@ -54,7 +60,7 @@ export default {
       JWS611A: 0,
       JWS712: 0,
       JWS712A: 0,
-
+      //graph options
       chartOptions: {
         chart: {
           stacked: true,
@@ -116,6 +122,7 @@ export default {
   },
   methods: {
     getValues() {
+      //Get values through CORS proxy and save them to local storage
       proxy
         .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[0]))
         .then(response => {
@@ -217,6 +224,7 @@ export default {
         });
     },
     fakeValues() {
+      // Fenerate Dummy Values
       (this.r329 = faker.random.number()),
         (this.r317 = faker.random.number()),
         (this.r739 = faker.random.number()),
@@ -235,6 +243,7 @@ export default {
     },
 
     updateChart() {
+      // update chart using the reference
       this.$refs.LabsGraph.updateSeries([
         {
           data: [
@@ -249,6 +258,7 @@ export default {
         },
         {
           data: [
+            //calculate active PCs by subtracting active PCs from Total PCs
             this.r329 - this.r329A,
             this.r317 - this.r317A,
             this.r739 - this.r739A,

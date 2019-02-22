@@ -1,14 +1,18 @@
 <template>
   <div :class="{'bg-red': error}">
+    <!-- Create a line chart w/ apexcharts -->
     <apexchart ref="fred" type="line" :options="options" :series="series"></apexchart>
   </div>
 </template>
 
 <script>
+// Set up requirements
 const axios = require("axios");
+//Export for Vue
 export default {
   props: ["refreshSeconds"],
   mounted() {
+    // Fetch existing data from local storage on component load/script failure
     let memoryCache = localStorage.getItem("Memory");
     if (memoryCache) {
       this.memoryseries = JSON.parse(memoryCache);
@@ -17,15 +21,17 @@ export default {
     if (loadCache) {
       this.loadseries = JSON.parse(loadCache);
     }
-
+    //begin fetching data
     this.refresh();
   },
+
   data() {
     return {
       error: false,
-      memoryseries: [],
-      loadseries: [],
+      memoryseries: [], //Stores Memory Usage Stats
+      loadseries: [], //Stores system load stats
       value: 0,
+      //Graph Settings
       options: {
         chart: {
           foreColor: "#fff",
@@ -53,11 +59,11 @@ export default {
       },
       series: [
         {
-          name: "Load",
+          name: "Load", // Set up load Series
           data: [20]
         },
         {
-          name: "Memory usage",
+          name: "Memory usage", //set up memory usage series
           data: [20]
         }
       ]
@@ -65,21 +71,22 @@ export default {
   },
   methods: {
     fetchLoad(url) {
+      //function to get the load data from URL.
       axios
-        .get(url)
+        .get(url) //fetch URL
         .then(response => {
-          let temp = [...response.data.data.result[0].values];
-          temp.reverse();
+          let temp = [...response.data.data.result[0].values]; //set a temporary variable and assign it the load values
+          temp.reverse(); //Reverse the temp field so that the latest update is at the start of the array
 
           let newloaddata = temp
             .map(item => {
               return parseFloat(item[1]);
             })
-            .slice(0, 10)
-            .reverse();
-          this.updateLoadSeries(newloaddata);
+            .slice(0, 10) //take ten values most recent values from the array
+            .reverse(); // reverse to display the latest value last in the grpah
+          this.updateLoadSeries(newloaddata); //call update function
           this.error = false;
-        })
+        }) //Error Checking
         .catch(error => {
           console.log(error);
           this.error = true;
@@ -87,6 +94,7 @@ export default {
         });
     },
     fetchMemory(url) {
+      //fetch memory
       axios
         .get(url)
         .then(response => {
@@ -99,7 +107,7 @@ export default {
             .slice(0, 10);
           this.error = false;
           this.updateMemorySeries(newmemdata);
-        })
+        }) //error checking
         .catch(error => {
           console.log(error);
           this.error = true;
@@ -111,6 +119,7 @@ export default {
 
       start.setHours(start.getHours() - 1);
       let end = new Date();
+      //Convert Date to string
       const startString = start.toISOString();
       const endString = end.toISOString();
 
@@ -122,21 +131,23 @@ export default {
       this.fetchMemory(memurl);
       setTimeout(this.refresh, this.refreshSeconds * 1000);
     },
-
+    //Update nodes in load series
     updateLoadSeries(newData) {
       this.loadseries = newData;
 
       this.updateGraph();
-
+      // save load data to local storage
       localStorage.setItem("Load", JSON.stringify(newData));
     },
+    //update nodes in memory series
     updateMemorySeries(newData) {
       this.memoryseries = newData;
       this.updateGraph();
-
+      //save memory data to local storage
       localStorage.setItem("Memory", JSON.stringify(newData));
     },
     updateGraph() {
+      // use graph reference to assign each series their new data
       this.$refs.fred.updateSeries([
         {
           data: this.loadseries

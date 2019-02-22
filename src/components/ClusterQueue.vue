@@ -1,15 +1,19 @@
 <template>
   <div :class="{'bg-red': error}">
+    <!-- create Bar graph for clusters -->
     <apexchart ref="clusterChart" type="bar" :options="options" :series="series"></apexchart>
   </div>
 </template>
 
 <script>
+// Set up requirements
 const axios = require("axios");
 export default {
+  //Export for Vue
   props: ["refreshSeconds"],
   mounted() {
-    setInterval(this.refresh, this.refreshSeconds * 1000);
+    setInterval(this.refresh, this.refreshSeconds * 1000); //refresh after a set number of seconds
+    //get existing data through local storage
     let pendingCache = localStorage.getItem("Pending");
 
     if (pendingCache) {
@@ -28,6 +32,7 @@ export default {
       pending: 0,
       running: 0,
       options: {
+        // Graph options
         chart: {
           foreColor: "#fff",
           toolbar: {
@@ -65,7 +70,7 @@ export default {
   methods: {
     refresh() {
       axios
-        .get(`http://${process.env.VUE_APP_API_IP}:3001/`)
+        .get(`http://${process.env.VUE_APP_API_IP}:3001/`) //get data from al link obscured by enviroment variables
         .then(response => {
           // handle success
           let tempPending = response.data.stats.pending;
@@ -83,10 +88,12 @@ export default {
       this.pending = newPending;
       this.running = newRunning;
       this.updateChart();
+      //Assign data to local storage
       localStorage.setItem("Pending", JSON.stringify(newPending));
       localStorage.setItem("Running", JSON.stringify(newRunning));
     },
     updateChart() {
+      //Assign data to chart via reference
       this.$refs.clusterChart.updateSeries([
         {
           data: [this.pending, this.running]

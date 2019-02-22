@@ -1,5 +1,6 @@
 <template>
   <div class="home" id="dashboard">
+    <!-- Dashboard -->
     <link rel="styleheet" type="text/css" href="../main.css">
     <div class="shadow, bg-black-tile border-grey-darkest load rounded">
       <system-load refresh-seconds="10"/>
@@ -27,6 +28,7 @@
 
 <script>
 // @ is an alias to /src
+// Import Components
 import HelloWorld from "@/components/HelloWorld.vue";
 import SystemLoad from "@/components/SystemLoad.vue";
 import DonutChart from "@/components/DonutChart.vue";
@@ -51,6 +53,7 @@ export default {
   data() {
     return {
       apiConfig: {
+        //Enviromental Variables set up
         weatherUrl: process.env.VUE_APP_WEATHER_URL,
         ticketsUrl: process.env.VUE_APP_TICKETS_URL,
         licenceUrl: process.env.VUE_APP_LICENCE_URL,
@@ -63,23 +66,5 @@ export default {
 };
 </script>
 <style scoped>
-/* .donut {
-  grid-row: 1;
-}
-.labs {
-  grid-row: 1.5;
-}
-.load {
-  grid-row: 1;
-}
-.cluster {
-  grid-row: 1;
-}
-.tickets {
-  grid-row: 3;
-}
-.licences {
-  grid-row: 3;
-} */
 </style>
 
