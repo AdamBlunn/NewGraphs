@@ -13,8 +13,8 @@ describe("Tickets.vue", () => {
     const wrapper = shallowMount(Tickets);
     wrapper.vm.$nextTick(() => {
 
-      //expect(setTimeout).toHaveBeenCalledTimes(1);
-      jest.advanceTimersByTime(4000);
+      jest.advanceTimersByTime(10000);
+      console.log(wrapper.vm.tickets)
       expect(wrapper.vm.tickets).not.toHaveLength(0);
 
     })

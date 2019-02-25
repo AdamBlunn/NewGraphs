@@ -37,8 +37,7 @@ export default {
   data() {
     return {
       error:false,
-      // stats: {},
-      tickets: []
+      tickets: [{}]
     };
   },
   methods: {
@@ -47,9 +46,7 @@ export default {
         .get(`http://${process.env.VUE_APP_API_IP}:3018/`) //fetch data from the tickets enviroment variab;r
         .then(response => {
           // handle success
-          // console.log(response);
          let ticket = response.data.items
-        //  let stats = 0
          this.error=false;        
          this.updateValues(ticket);
         })
@@ -93,8 +90,8 @@ export default {
       this.updateValues(ticket2)
     },
     updateValues(newTickets){ //Update Values
-      // this.stats=newStats;
-      this.tickets=newTickets.slice(0,10)  
+      this.tickets=newTickets.slice(0,10) 
+      console.log(this.tickets) 
       localStorage.setItem("Tickets",JSON.stringify(newTickets)); //Assign to Local storage
     }
   }

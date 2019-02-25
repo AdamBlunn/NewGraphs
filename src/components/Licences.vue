@@ -73,7 +73,7 @@ export default {
               const today = new Date();
               const expiryDate = parse(lic.ExpireDate)
               const expiryMonth= addMonths(today,2)
-              console.log(expiringLicenes)
+              // console.log(expiringLicenes)
               if(isBefore(expiryDate,today))return false
 
               if(isAfter(expiryDate, expiryMonth)) return false
@@ -97,7 +97,7 @@ export default {
           if (x > y) {return 1;}
           return 0;
           })
-          console.log(expiringLicenes)
+          // console.log(expiringLicenes)
           this.updateValues(expiringLicenes/*, expiredLicences*/);
         })
         .catch((error)=> {
@@ -140,7 +140,7 @@ export default {
       //     if (x > y) {return 1;}
       //     return 0;
       //     })
-          console.log(licence2)
+          // console.log(licence2)
           this.updateValues(licence2/*expiredLicences*/);
         
     },
