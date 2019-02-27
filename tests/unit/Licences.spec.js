@@ -12,7 +12,7 @@ describe("Licences.vue", () => {
     it("Licences array has length > 0", () => {
         const wrapper = shallowMount(Licences);
         wrapper.vm.$nextTick(() => {
-            jest.advanceTimersByTime(99999);
+            jest.advanceTimersByTime(4000);
             expect(wrapper.vm.licence).not.toHaveLength(0);
         })
     })
