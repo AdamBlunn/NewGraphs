@@ -12,6 +12,7 @@
 <script>
 //Set up dependancies
 const axios = require("axios");
+import proxy from "../modules/cors-client.js";
 const faker = require('faker')
 export default {
   props: ['refreshSeconds'], 
@@ -38,7 +39,7 @@ export default {
   },
   methods: {
     refresh() {
-      axios
+      proxy
         .get(`http://${process.env.VUE_APP_API_IP}:3018/`) //fetch data from the tickets enviroment variab;r
         .then(response => {
           // handle success

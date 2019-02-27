@@ -8,6 +8,8 @@
 <script>
 // Set up requirements
 const axios = require("axios");
+import client from "../modules/Client.js";
+import proxy from "../modules/cors-client.js";
 export default {
   //Export for Vue
   props: ["refreshSeconds"],
@@ -69,7 +71,7 @@ export default {
   },
   methods: {
     refresh() {
-      axios
+      proxy
         .get(`http://${process.env.VUE_APP_API_IP}:3001/`) //get data from al link obscured by enviroment variables
         .then(response => {
           // handle success
