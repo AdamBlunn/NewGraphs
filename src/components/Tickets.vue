@@ -21,14 +21,10 @@ export default {
     }else{
       setInterval(this.refresh, this.refreshSeconds*1000); //proceed as normal
       }
-     //get data from local storage
-    let statsCache = localStorage.getItem("Stats");
-    if (statsCache){
-      this.stats=JSON.parse(statsCache)
-    }
+     //get data from local storage  
     let ticketsCache = localStorage.getItem("Tickets");
     if(ticketsCache){
-      this.tickets=JSON.parse(ticketsCache);
+      //this.tickets=JSON.parse(ticketsCache);
     }//Check for demo version on component load
     if (process.env.VUE_APP_ENVIROMENT == 'Demo'){
       this.generateFaker() //generate fake values
