@@ -8,7 +8,7 @@
 <script>
 // Set up requirements
 const axios = require("axios");
-import client from "../modules/Client.js";
+
 import proxy from "../modules/cors-client.js";
 export default {
   //Export for Vue
