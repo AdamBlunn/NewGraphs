@@ -3,6 +3,9 @@
     <!-- Dashboard -->
     <link rel="styleheet" type="text/css" href="../main.css">
     <div class="shadow, bg-black-tile border-grey-darkest load rounded">
+      <p class="text-center text-grey-lightest">
+        <strong>System Load and Memory Usage</strong>
+      </p>
       <system-load refresh-seconds="10"/>
     </div>
     <div class="border shadow tickets bg-blue-test border-blue-test container-sm rounded-lg">
@@ -10,12 +13,18 @@
     </div>
 
     <div class="labs shadow rounded labs bg-black-tile">
+      <p class="text-center text-grey-lightest">
+        <strong>Active Computers Per Lab</strong>
+      </p>
       <labs :apiconfig="apiConfig"/>
     </div>
     <div class="border shadow, rounded border-blue-test container-sm bg-blue-test licences">
       <licences refresh-seconds="1" class="text-center, text-grey-lightest"/>
     </div>
     <div class="shadow rounded cluster bg-black-tile">
+      <p class="text-center text-grey-lightest">
+        <strong>Cluster View</strong>
+      </p>
       <cluster-queue refresh-seconds="10"></cluster-queue>
     </div>
     <div

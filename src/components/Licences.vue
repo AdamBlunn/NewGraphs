@@ -26,8 +26,8 @@ export default {
   props: ["refreshSeconds", /*"apiconfig"*/],
   mounted() {
     //Check for demo version
-      if (process.env.VUE_APP_ENVIROMENT === 'Demo'){
-      setInterval(this.fakeValues,this.refreshSeconds*1000)   
+      if (process.env.VUE_APP_ENVIROMENT === 'Demo'){ //DELETE WHEN I'M GONE, JUST USE this.refresh()
+      setInterval(this.fakeValues,this.refreshSeconds*1000)  //DELETE WHEN I'M GONE 
     }else{ //else run as normal
       setInterval(this.refresh, this.refreshSeconds*1000);
       }
@@ -44,8 +44,8 @@ export default {
     if(lengthCache){
       this.licenceExpired = JSON.parse(expiredLicencesCache)
     }
-     if (process.env.VUE_APP_ENVIROMENT == 'Demo'){ //check for dem version
-      this.fakeValues() //generate dummy values 
+     if (process.env.VUE_APP_ENVIROMENT == 'Demo'){ //check for dem version DELETE WHEN I'M GONE, JUST USE this.refresh()
+      this.fakeValues() //generate dummy values  DELETE WHEN I'M GONE
     }else{this.refresh();}  
   },
   data() {
@@ -106,7 +106,7 @@ export default {
           this.error=true;
         });
     },
-    fakeValues(){ // Generate Dummy Values to populate list 
+    fakeValues(){ // Generate Dummy Values to populate list DELETE WHEN I'M GONE
      let licence2 = [{     
        id:faker.random.number(),
        creator:faker.name.findName(),

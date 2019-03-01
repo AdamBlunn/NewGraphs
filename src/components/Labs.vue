@@ -14,6 +14,7 @@ export default {
   mounted() {
     // Check for demo Version
     if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+      //DELETE WHEN I'M GONE, JUST USE this.refresh()
       setInterval(this.fakeValues, 100000);
     } else {
       setInterval(this.refresh, 100000);
@@ -38,8 +39,9 @@ export default {
     }); //Create arry of URLS by combining URL with lab name
     console.log(url);
     if (process.env.VUE_APP_ENVIROMENT == "Demo") {
+      //DELETE WHEN I'M GONE, JUST USE this.refresh()
       // check for demo version
-      this.fakeValues();
+      this.fakeValues(); //DELETE WHEN I'M GONE
     } else {
       this.getValues(); // proceed normally
     }
@@ -224,7 +226,7 @@ export default {
         });
     },
     fakeValues() {
-      // Fenerate Dummy Values
+      // Generate Dummy Values DELETE WHEN I'M GONE
       (this.r329 = faker.random.number()),
         (this.r317 = faker.random.number()),
         (this.r739 = faker.random.number()),
