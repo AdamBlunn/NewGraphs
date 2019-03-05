@@ -1,13 +1,10 @@
+jest.mock('@/modules/axiosWrapper.js');
 import { shallowMount } from "@vue/test-utils";
 import Tickets from "@/components/Tickets.vue";
-import axios from 'axios';
+import wrap from "@/modules/axiosWrapper.js";
 import 'jest-localstorage-mock';
-
-
-
 jest.useFakeTimers();
 //jest.runAllTimers()
-
 describe("Tickets.vue", () => {
   it("Tickets array is not empty", () => {
     const wrapper = shallowMount(Tickets);
@@ -27,10 +24,10 @@ describe("Tickets.vue", () => {
     expect(wrapper.vm.tickets).toEqual([{ link: 1 }])
   });
   it("Test axios", () => {
-    jest.mock('axios');
     const tickets = [{ title: 'test' }];
     const resp = { data: tickets };
-    axios.get.mockResolvedValue(resp);
+    console.log(resp)
+    wrap.get.mockResolvedValue(resp);
     expect(resp.data).toEqual(tickets)
   })
 });

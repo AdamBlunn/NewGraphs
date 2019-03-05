@@ -11,7 +11,6 @@
     <div class="border shadow tickets bg-blue-test border-blue-test container-sm rounded-lg">
       <tickets refresh-seconds="10" :apiconfig="apiConfig"/>
     </div>
-
     <div class="labs shadow rounded labs bg-black-tile">
       <p class="text-center text-grey-lightest">
         <strong>Active Computers Per Lab</strong>
@@ -34,7 +33,6 @@
     </div>
   </div>
 </template>
-
 <script>
 // @ is an alias to /src
 // Import Components
