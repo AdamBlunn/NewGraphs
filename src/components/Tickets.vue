@@ -14,6 +14,7 @@
 const axios = require("axios");
 import proxy from "../modules/cors-client.js";
 import wrapper from "../modules/axiosWrapper.js";
+import { promised } from 'q';
 const faker = require('faker')
 export default {
   props: ['refreshSeconds'], 
@@ -39,20 +40,14 @@ export default {
     };
   },
   methods: {
-    refresh() {
-      wrapper
-        .get(`http://${process.env.VUE_APP_API_IP}:3018/`) //fetch data from the tickets enviroment variables
-        .then(response => {
-          // handle success
-         let ticket = response.data.items
-         this.error=false;        
+   async refresh() {
+     console.log('fred')
+     let ticket= await wrapper
+        .get(`http://${process.env.VUE_APP_API_IP}:3018/`).catch(error=>console.log(error))
+       console.log(ticket)
+                 this.error=false;  
+                 console.log("ticket")      
          this.updateValues(ticket);
-        })
-        .catch((error)=> {
-          // handle error 
-          console.log(error);
-          this.error=true;
-        });
     },
     generateFaker(){ //Generate Dummy Data
       let ticket2 =[{

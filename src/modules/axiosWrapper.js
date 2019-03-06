@@ -1,14 +1,21 @@
 import axios from 'axios';
 export default {
-    get(url) {
+    async  get(url) {
         const wrapper = `http://localhost:8111/${url}`
         console.log(wrapper)
-        return axios.get(wrapper)
-    },
-    then(url) {
-        const wrapper = `http://localhost:8111/${url}`
-        axios.get(wrapper).then((response) => {
-            console.log(response.data)
-        })
+        try {
+            console.log("work")
+            let res = await axios.get(wrapper)
+            console.log("test")
+            let { data } = await res.data;
+            console.log("Response")
+            return data;
+        } catch (e) {
+            throw Error(error)
+            // console.log(e)
+            // return 'blah'
+        }
+
     }
+
 }
