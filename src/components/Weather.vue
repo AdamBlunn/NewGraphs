@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="max-w-sm rounded overflow-hidden">
-      <!-- <span id="test"></span> -->
       <!-- Formatting for the Weather report Component, Displays each data item through {{}} -->
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">Weather Report</div>
@@ -80,7 +79,6 @@ export default {
         windGust: "",
         precipProbability: ""
       }
-      // apiUrl: process.env.VUE_APP_WEATHER_URL
     };
   },
   mounted() {
@@ -139,7 +137,6 @@ export default {
       this.forecast.cloudCover = weather.data[0].cloudCover;
       this.forecast.icon = weather.data[0].icon;
       keyvalue = icons.get(this.forecast.icon); //Assign icon to matching Keyvalue
-      console.log(keyvalue);
       document.getElementById("test").innerHTML = `<i class="${keyvalue}"></i>`; //read weather data back  in through inner HTML
       //Save data to local storage
       localStorage.setItem("Summary", JSON.stringify(weather.summary));

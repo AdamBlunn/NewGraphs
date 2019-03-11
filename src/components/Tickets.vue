@@ -13,20 +13,19 @@
 //Set up dependancies
 const axios = require("axios");
 import proxy from "../modules/cors-client.js";
-import wrapper from "../modules/axiosWrapper.js";
 const faker = require('faker')
 export default {
   props: ['refreshSeconds'], 
   mounted() {
-    if (process.env.VUE_APP_ENVIROMENT === 'Demo'){ // Check for demo version
-      setInterval(this.generateFaker,this.refreshSeconds*1000)   //generate dummy values
+    if (process.env.VUE_APP_ENVIROMENT === 'Demo'){ // Check for demo version DELETE WHEN I'M GONE, USE setInterval(this.refresh, 100000); INSTEAD
+      setInterval(this.generateFaker,this.refreshSeconds*1000)   //generate dummy values DELETE WHEN I'M GONE
     }else{
       setInterval(this.refresh, this.refreshSeconds*1000); //proceed as normal
       }
      //get data from local storage  
     let ticketsCache = localStorage.getItem("Tickets");
     if(ticketsCache){
-      //this.tickets=JSON.parse(ticketsCache);
+      this.tickets=JSON.parse(ticketsCache);
     }//Check for demo version on component load
     if (process.env.VUE_APP_ENVIROMENT == 'Demo'){
       this.generateFaker() //generate fake values
@@ -40,7 +39,7 @@ export default {
   },
   methods: {
     refresh() {
-      wrapper
+      proxy
         .get(`http://${process.env.VUE_APP_API_IP}:3018/`) //fetch data from the tickets enviroment variables
         .then(response => {
           // handle success
@@ -54,7 +53,7 @@ export default {
           this.error=true;
         });
     },
-    generateFaker(){ //Generate Dummy Data
+    generateFaker(){ //Generate Dummy Data DELETE WHEN I'M GONE
       let ticket2 =[{
         content: faker.lorem.words(),
         contentSnippet: faker.lorem.words(),
@@ -89,7 +88,6 @@ export default {
     },
     updateValues(newTickets){ //Update Values
       this.tickets=newTickets.slice(0,10) 
-      console.log(this.tickets) 
       localStorage.setItem("Tickets",JSON.stringify(newTickets)); //Assign to Local storage
     }
   }

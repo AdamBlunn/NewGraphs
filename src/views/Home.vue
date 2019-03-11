@@ -36,21 +36,17 @@
 <script>
 // @ is an alias to /src
 // Import Components
-import HelloWorld from "@/components/HelloWorld.vue";
 import SystemLoad from "@/components/SystemLoad.vue";
-import DonutChart from "@/components/DonutChart.vue";
 import Tickets from "@/components/Tickets.vue";
 import ClusterQueue from "@/components/ClusterQueue.vue";
 import Weather from "@/components/Weather.vue";
 import Licences from "@/components/Licences.vue";
 import Labs from "@/components/Labs.vue";
-
+console.log(process.env.VUE_APP_TICKETS_URL);
 export default {
   name: "home",
   components: {
-    HelloWorld,
     SystemLoad,
-    DonutChart,
     Tickets,
     ClusterQueue,
     Weather,

@@ -23,7 +23,7 @@ const axios = require("axios");
 const faker = require('faker')
 import proxy from "../modules/cors-client.js";//Import proxy server functions
 export default {
-  props: ["refreshSeconds", /*"apiconfig"*/],
+  props: ["refreshSeconds"],
   mounted() {
     //Check for demo version
       if (process.env.VUE_APP_ENVIROMENT === 'Demo'){ //DELETE WHEN I'M GONE, JUST USE this.refresh()
@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      //initialise varibles
+      //initialise varibles and error 
       error:false,
       licence: [{}],
       licenceExpired:[{}],
@@ -65,30 +65,14 @@ export default {
         .get(this.licUrl)
         .then(response => {
           // handle success
-          //console.log(response);
-        //   console.log(response.data)
           const licences = response.data.Data;
-          //console.log(licences)
           const expiringLicenes = licences.filter(lic=>{ // filter to display licences that will expire in the next two months 
               const today = new Date();
               const expiryDate = parse(lic.ExpireDate)
               const expiryMonth= addMonths(today,2)
-              // console.log(expiringLicenes)
               if(isBefore(expiryDate,today))return false
-
               if(isAfter(expiryDate, expiryMonth)) return false
-
               return true;
-          })
-          const expiredLicences = licences.filter(lic=>{ //Outdated, can delete safely 
-            const today = new Date();
-            const expiryDate = parse(lic.ExpireDate)
-            const expiryMonth = subMonths(today, 12)
-            if(isBefore(expiryDate, today)){
-              if(isBefore(expiryDate, expiryMonth )) return false
-            }if(isAfter(expiryDate,today))return false
-            
-            return true;           
           })
           expiringLicenes.sort(function(a, b){ //Sort expiring licences in order of the closest to expire. Set dates to a single case and sort.
           var x = a.ExpireDate.toLowerCase();
@@ -133,25 +117,15 @@ export default {
        Title: faker.commerce.product(), 
        ExpireDate: faker.date.future()
       }]
-      // licence2.sort(function(a, b){
-      //     var x = a.ExpireDate.toLowerCase();
-      //     var y = b.ExpireDate.toLowerCase();
-      //     if (x < y) {return -1;}
-      //     if (x > y) {return 1;}
-      //     return 0;
-      //     })
-          // console.log(licence2)
-          this.updateValues(licence2/*expiredLicences*/);
+          this.updateValues(licence2);
         
     },
     
-    updateValues(expiringLicences/*, expiredLicences*/){ // update values in the list
+    updateValues(expiringLicences){ // update values in the list
       this.licence=expiringLicences;
-      //this.licenceExpired = expiredLicences
       this.numberOfLicences= expiringLicences.length;
       localStorage.setItem("Expiring Licences", JSON.stringify(expiringLicences));
       localStorage.setItem("No of Expiring Licences", JSON.stringify(expiringLicences.length)); 
-      //localStorage.setItem("Expired Licences", JSON.stringify(expiredLicences));     
     }
   }
 };

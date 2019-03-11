@@ -1,3 +1,4 @@
+//Defunct
 import { shallowMount } from "@vue/test-utils";
 import Licences from "@/components/Licences.vue";
 

@@ -26,11 +26,14 @@ export default {
     if (runningCache) {
       this.running = JSON.parse(runningCache);
     }
+    //run refresh on start up
     this.refresh();
   },
   data() {
     return {
+      //Setup for error
       error: false,
+      //Setup for pending and Running Variables
       pending: 0,
       running: 0,
       options: {
@@ -53,14 +56,14 @@ export default {
           zoom: {
             enabled: false
           }
-        },
+        }, //Set up X axis
         xaxis: {
           categories: ["Pending", "Running"]
         },
         yaxis: {
           show: false
         }
-      },
+      }, //Series Set up
       series: [
         {
           name: "series-1",
@@ -70,6 +73,7 @@ export default {
     };
   },
   methods: {
+    // Refresh Method - Takes in values for pending and running.
     refresh() {
       proxy
         .get(`http://${process.env.VUE_APP_API_IP}:3001/`) //get data from al link obscured by enviroment variables
@@ -77,7 +81,7 @@ export default {
           // handle success
           let tempPending = response.data.stats.pending;
           let tempRunning = response.data.stats.running;
-          this.updateValues(tempPending, tempRunning);
+          this.updateValues(tempPending, tempRunning); //Pass to update values
         })
         .catch(error => {
           // handle error
@@ -86,6 +90,7 @@ export default {
           this.error = true;
         });
     },
+    //Update Values method - Recieves values from refresh and assigns them to the proper pending and running values, then calls update Chart function
     updateValues(newPending, newRunning) {
       this.pending = newPending;
       this.running = newRunning;
@@ -93,7 +98,7 @@ export default {
       //Assign data to local storage
       localStorage.setItem("Pending", JSON.stringify(newPending));
       localStorage.setItem("Running", JSON.stringify(newRunning));
-    },
+    }, //Update Chart Method - Updates the chart with the data stored in this.pending and this.running.
     updateChart() {
       //Assign data to chart via reference
       this.$refs.clusterChart.updateSeries([

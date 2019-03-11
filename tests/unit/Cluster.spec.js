@@ -1,3 +1,4 @@
+//Defunct
 import { shallowMount } from "@vue/test-utils";
 import ClusterQueue from "@/components/ClusterQueue.vue";
 jest.useFakeTimers();

@@ -1,3 +1,4 @@
+//DEFUNCT
 jest.mock('@/modules/axiosWrapper.js');
 import { shallowMount } from "@vue/test-utils";
 import Tickets from "@/components/Tickets.vue";

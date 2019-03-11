@@ -12,12 +12,12 @@ import proxy from "../modules/cors-client.js";
 export default {
   props: ["apiconfig"],
   mounted() {
-    // Check for demo Version
+    // Check for demo Version - DELETE WHEN I'M GONE - Replace with setInterval(this.getValues, 100000);
     if (process.env.VUE_APP_ENVIROMENT === "Demo") {
-      //DELETE WHEN I'M GONE, JUST USE this.refresh()
+      //DELETE WHEN I'M GONE, JUST USE this.getValues()
       setInterval(this.fakeValues, 100000);
     } else {
-      setInterval(this.refresh, 100000);
+      setInterval(this.getValues, 100000);
     }
     //Get Lab data through local storage
     let r329cCache = localStorage.getItem("r329");
@@ -36,10 +36,10 @@ export default {
     this.apiconfig.labnames.forEach(name => {
       url.push(this.urlAll + this.apiconfig.labnames[name]);
       url.push(this.urlActive + this.apiconfig.labnames[name]);
-    }); //Create arry of URLS by combining URL with lab name
+    }); //Create array of URLS by combining URL with lab name
     console.log(url);
     if (process.env.VUE_APP_ENVIROMENT == "Demo") {
-      //DELETE WHEN I'M GONE, JUST USE this.refresh()
+      //DELETE WHEN I'M GONE, JUST USE this.getValues()
       // check for demo version
       this.fakeValues(); //DELETE WHEN I'M GONE
     } else {
@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      //assign variables
+      //assign variables for labs and initialise error
       error: false,
       r329: 0,
       r329A: 0,
@@ -77,7 +77,7 @@ export default {
             horizontal: true,
             datalabels: top
           }
-        },
+        }, //Set up X-axis
         xaxis: {
           categories: [
             "Rankine 329",
@@ -109,7 +109,7 @@ export default {
             shadeIntensity: 0.65
           }
         }
-      },
+      }, //Setup Series
       series: [
         {
           name: "Active PCs",
@@ -126,7 +126,7 @@ export default {
     getValues() {
       //Get values through CORS proxy and save them to local storage
       proxy
-        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[0]))
+        .get(this.apiconfig.urlAll.concat(this.apiconfig.labnames[0])) // Combine URL All with labnames array to get functioning url
         .then(response => {
           this.r329 = response.data;
           console.log(this.apiconfig);
