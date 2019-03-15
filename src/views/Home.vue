@@ -42,7 +42,6 @@ import ClusterQueue from "@/components/ClusterQueue.vue";
 import Weather from "@/components/Weather.vue";
 import Licences from "@/components/Licences.vue";
 import Labs from "@/components/Labs.vue";
-console.log(process.env.VUE_APP_TICKETS_URL);
 export default {
   name: "home",
   components: {
