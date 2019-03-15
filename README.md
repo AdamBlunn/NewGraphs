@@ -49,8 +49,7 @@ This component also assigns several variables to be passed to the individual com
 The _apiConfig_ variable is an object that contains all of the enviromental variables for this website. These are primarily urls to be read by either the CORS proxy, or the RSS parser. This variable is then passed into the relevent componenents so that the relevent URLs can be used. 
 
 ## Scripts
-### weather.js
-Defunct
+
 ### gridengine.js
 Randomly generates data for the cluster view component, should become defunct once the cluster view is finished. 
 
