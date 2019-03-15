@@ -51,10 +51,34 @@ The _apiConfig_ variable is an object that contains all of the enviromental vari
 
 ## Scripts
 ### weather.js
+Defunct
 ### gridengine.js
+Randomly generates data for the cluster view component, should become defunct once the cluster view is finished. 
+
 ### refreshWeather.sh
+Makes new call to _DarkskyAPI_ and exports the data to  a _weather.json_ file.
 ### cors_proxy.js
+Proxy that allows all components to call the same function for axios calls, allows components to bypass the CORS Errors that can come from perfoming axios calls on some of the data used by this website. Used by every component.
+
 ### cors-client.js
+Sets up the _cors_proxy_. refreshes every hour. 
+
 ### axiosWrapper.js
+Currently Defunct - Was supposed to be used as a wrapper for unit testing. 
 
 ## Dependancies
+This website has several dependancies. These include:
+- Jest
+- ApexCharts
+- TailwindCSS
+- date-fns
+- faker
+- cors-anywhere
+- express
+- Axios
+- rss-parser
+- express
+- vue
+- vue-apexcharts
+- vue-router
+- dotenv
