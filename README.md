@@ -60,7 +60,7 @@ Makes new call to _DarkskyAPI_ and exports the data to  a _weather.json_ file.
 Proxy that allows all components to call the same function for axios calls, allows components to bypass the CORS Errors that can come from perfoming axios calls on some of the data used by this website. Used by every component.
 
 ### cors-client.js
-Sets up the _cors_proxy_. refreshes every hour. 
+Sets up the _cors_proxy_. Refreshes every hour. 
 
 ### axiosWrapper.js
 Currently Defunct - Was supposed to be used as a wrapper for unit testing. 
