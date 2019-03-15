@@ -80,3 +80,5 @@ This website has several dependancies. These include:
 - vue-apexcharts
 - vue-router
 - dotenv
+##Unit Testing
+Currently Defunct, JEST did not work as intended, will find other ways to test it.
