@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/AdamBlunn/NewGraphs.svg?branch=master)](https://travis-ci.org/AdamBlunn/NewGraphs)
-# GraphDashboard
-# NewGraphs
-Updated Version of Graphs with **JEST** installed properly
+# Graphs Dashboard
+Updated Version of Graphs with **JEST** installed properly. Is a website that displays key components of the tech support department. Coded in Vue.js and the libraries listed below (see dependancies section).
 
 ## Components
 ### Licence Component 
