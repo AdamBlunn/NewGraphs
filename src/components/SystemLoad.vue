@@ -8,6 +8,8 @@
 <script>
 // Set up requirements
 const axios = require("axios");
+const faker = require("faker");
+
 //Export for Vue
 export default {
   props: ["refreshSeconds"],
@@ -22,9 +24,17 @@ export default {
       this.loadseries = JSON.parse(loadCache);
     }
     //begin fetching data
-    this.refresh();
+    // Check for demo Version - DELETE WHEN I'M GONE - Replace with setInterval(this.getValues, 100000);
+    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+      //DELETE WHEN I'M GONE, JUST USE this.getValues()
+      setInterval(this.fakeMemory, 10000000);
+      setInterval(this.fakeLoad, 10000000);
+      this.fakeMemory();
+      this.fakeLoad();
+    } else {
+      this.refresh();
+    }
   },
-
   data() {
     return {
       error: false,
@@ -52,7 +62,6 @@ export default {
             enabled: false
           }
         },
-
         yaxis: {
           max: 50
         }
@@ -77,7 +86,6 @@ export default {
         .then(response => {
           let temp = [...response.data.data.result[0].values]; //set a temporary variable and assign it the load values
           temp.reverse(); //Reverse the temp field so that the latest update is at the start of the array
-
           let newloaddata = temp
             .map(item => {
               return parseFloat(item[1]);
@@ -114,19 +122,49 @@ export default {
           this.updateMemorySeries(this.memoryseries);
         });
     },
+    fakeMemory() {
+      let temp3 = [
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50),
+        faker.random.number(50)
+      ];
+      temp3.reverse();
+      this.updateMemorySeries(temp3);
+      console.log(temp3);
+    },
+    fakeLoad() {
+      let temp4 = [
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25),
+        faker.random.number(25)
+      ];
+      temp4.reverse();
+      this.updateLoadSeries(temp4);
+      console.log(temp4);
+    },
     refresh() {
       let start = new Date();
-
       start.setHours(start.getHours() - 1);
       let end = new Date();
       //Convert Date to string
       const startString = start.toISOString();
       const endString = end.toISOString();
-
       const loadurl = `http://localhost:9090/api/v1/query_range?query=node_load5{job=%22mymac%22}&start=${startString}&end=${endString}&step=15s`;
-
       const memurl = `http://localhost:9090/api/v1/query_range?query=node_memory_active_bytes{job=%22mymac%22}&start=${startString}&end=${endString}&step=15s`;
-
       this.fetchLoad(loadurl);
       this.fetchMemory(memurl);
       setTimeout(this.refresh, this.refreshSeconds * 1000);
@@ -134,7 +172,6 @@ export default {
     //Update nodes in load series
     updateLoadSeries(newData) {
       this.loadseries = newData;
-
       this.updateGraph();
       // save load data to local storage
       localStorage.setItem("Load", JSON.stringify(newData));

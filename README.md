@@ -25,6 +25,7 @@ This component displays a graph _(via ApexCharts)_ that shows the system load an
 
 Local storage has also been used to save all data from this graph so that something can be shown if there an error occurs. 
 
+This component can also randomly generate data if the _VUE_APP_ENVIROMENT_ enviroment variable is set to _"Demo"_, this done via the **faker** library
 
 ### Labs Review Component
 The Labs review component takes in two pieces of data for each lab, the number of active PCs and the total number of PCs. These are taken from multiple university data nodes, fetched by the _cors_proxy.js_ script. This is taken from a link that is concatenated with the ID of the lab, this is then passed to the proxy and the data is then returned. This data is then visualised in a horizontal bar graph (via **ApexCharts**), The two tiered bar chart displays the number of active PCs and the number of inactive PCs **(Active PCs - Total PCs)** . This data is stored in local storage so that it can be used upon startup, ensuring that the website will not have null values in the graph. 
@@ -81,5 +82,3 @@ This website has several dependancies. These include:
 - vue-router
 - dotenv
 
-## Unit Testing
-Currently Defunct, JEST did not work as intended, will find other ways to test it.
