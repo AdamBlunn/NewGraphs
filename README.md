@@ -1,5 +1,15 @@
 # Graphs Dashboard
-Updated Version of Graphs with **JEST** installed properly. Is a website that displays key components of the tech support department. Coded in Vue.js and the libraries listed below (see dependancies section).
+Updated Version of Graphs with **JEST** installed properly. Is a website that displays key components of the tech support department. Uses libraries like prometheus and node exporter to pull in data from university systems and visualises that data in a number of forms, currently there are six tiles on the dashboard:
+- Licences tile
+- Tickets Tile
+- Weather Report Tile
+- Lab Capacity Tile
+- Data Clusters Tile
+- System Load Tile
+While these six tiles are all there is at the moment, there is plenty of room for expansion give Vue.js's Moduartiy. This webpage is designed to be shown on a television or monitor, so there is also an element of responsive design to this project.  
+Currently, the unit testing does not work and was abandoned due to the ammount of trouble that it gave me (4 weeks of delays). However, this can be picked up again at a later date. 
+There is error handling for all of the tiles through _local Storage_ this will allow the latest data from local storage to be shown at any given time, this means that in the event of an  error, fairly recent data will still be shown. 
+Coded in Vue.js and the libraries listed below (see dependancies section).
 
 ## Components
 ### Licence Component 
