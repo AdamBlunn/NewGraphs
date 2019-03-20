@@ -108,6 +108,15 @@ Sets up the _cors_proxy_. Refreshes every hour.
 ### axiosWrapper.js
 Currently Defunct - Was supposed to be used as a wrapper for unit testing. 
 
+## Cors Proxy
+Cross-Origin Resourse Sharing (CORS) is a process that uses HTTP headers to tell a web browser to allow a web application running at one domain permission  to get selected resources from servers on different domains.
+
+CORS errors can occur when correct authorisation has not been given, a workaround to this is using a CORS proxy, this is a service that allows developers to access resources from other servers, regardless of ownership. This can be useful in many situations. 
+
+The CORS Proxy used in this application is CORS Anywhere, built in Node.js this proxy automatically adds CORS headers to all proxied requests. This will drastically reduce or (in this case) outright prevent CORS errors recieved when data is requested. This is necessary considering how many pieces of data this application is fetching from other servers within Glasgow University.
+
+
+
 ## Dependancies
 This website has several dependancies. These include:
 - Jest
