@@ -12,6 +12,28 @@ Currently, the unit testing does not work and was abandoned due to the ammount o
 There is error handling for all of the tiles through _local Storage_ this will allow the latest data from local storage to be shown at any given time, this means that in the event of an  error, fairly recent data will still be shown. 
 Coded in Vue.js and the libraries listed below (see dependancies section).
 
+## Installation
+To install this web application, follow these steps:
+1. Clone or download the project
+    1. If zipped Extract the folder
+2. Using the terminal, move to the project folder
+3. run the command “npm install”
+4. Create .env file
+    1. Create a VUE_APP_API_KEY variable
+    2. Create a DARK_SKY_API_KEY variable
+    3. Create a VUE_APP_LAB_NAMES variable
+    4. Create a VUE_APP_TICKETS_URL variable
+    5. Create a VUE_APP_LICENCE_URL variable
+    6. Create a VUE_APP_WEATHER_URL variable
+    7. Create a VUE_APP_URL_ALL variable
+    8. Create a VUE_APP_URL_ACTIVE variable
+    9. Create a VUE_APP_ENVIRMENT variable
+5. Create a dark sky account at https://darksky.net/
+6. Run refreshWeather.sh
+7. Run cors_proxy.js
+8. Run gridengine.js
+9. Run server with npm run serve 
+
 ## Components
 ### Licence Component 
 The Licence component displays every software licence that expires within the next two months, these are recieved from a JSON file that is automatically updated. 
@@ -101,25 +123,3 @@ This website has several dependancies. These include:
 - vue-apexcharts
 - vue-router
 - dotenv
-
-# Installation
-To install this web application, follow these steps:
-1. Clone or download the project
-    1. If zipped Extract the folder
-2. Using the terminal, move to the project folder
-3. run the command “npm install”
-4. Create .env file
-    1. Create a VUE_APP_API_KEY variable
-    2. Create a DARK_SKY_API_KEY variable
-    3. Create a VUE_APP_LAB_NAMES variable
-    4. Create a VUE_APP_TICKETS_URL variable
-    5. Create a VUE_APP_LICENCE_URL variable
-    6. Create a VUE_APP_WEATHER_URL variable
-    7. Create a VUE_APP_URL_ALL variable
-    8. Create a VUE_APP_URL_ACTIVE variable
-    9. Create a VUE_APP_ENVIRMENT variable
-5. Create a dark sky account at https://darksky.net/
-6. Run refreshWeather.sh
-7. Run cors_proxy.js
-8. Run gridengine.js
-9. Run server with npm run serve 
