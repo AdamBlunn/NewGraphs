@@ -6,6 +6,6 @@ module.exports = {
         autoprefixer({
             add: true,
             grid: true
-        }),
+        })
     ]
 };
