@@ -115,8 +115,6 @@ CORS errors can occur when correct authorisation has not been given, a workaroun
 
 The CORS Proxy used in this application is CORS Anywhere, built in Node.js this proxy automatically adds CORS headers to all proxied requests. This will drastically reduce or (in this case) outright prevent CORS errors recieved when data is requested. This is necessary considering how many pieces of data this application is fetching from other servers within Glasgow University.
 
-
-
 ## Dependancies
 This website has several dependancies. These include:
 - Jest
