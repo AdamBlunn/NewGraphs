@@ -63,7 +63,8 @@ const icons = new Map([
   ["sleet", "fas fa-cloud-meatball"],
   ["wind", "fas fa-wind"],
   ["clear-day", "fas fa-sun"],
-  ["clear-night", "fas fa-moon"]
+  ["clear-night", "fas fa-moon"],
+  ["fog", "fas fa-cloud"]
 ]);
 let keyvalue = "";
 import proxy from "../modules/cors-client.js"; // import proxy
@@ -137,6 +138,7 @@ export default {
       this.forecast.cloudCover = weather.data[0].cloudCover;
       this.forecast.icon = weather.data[0].icon;
       keyvalue = icons.get(this.forecast.icon); //Assign icon to matching Keyvalue
+      console.log(this.forecast.icon);
       document.getElementById("test").innerHTML = `<i class="${keyvalue}"></i>`; //read weather data back  in through inner HTML
       //Save data to local storage
       localStorage.setItem("Summary", JSON.stringify(weather.summary));
