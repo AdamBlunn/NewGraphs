@@ -102,7 +102,7 @@ This website has several dependancies. These include:
 - vue-router
 - dotenv
 
-#Installation
+# Installation
 To install this web application, follow these steps:
 1. Clone or download the project
     1. If zipped Extract the folder
