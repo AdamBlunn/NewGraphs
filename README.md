@@ -20,12 +20,12 @@ To install this web application, follow these steps:
 3. run the command “npm install”
 4. Create a dark sky account at https://darksky.net/
 5. Create .env file
-    1. Create a VUE_APP_API_IP variable - contains Device IP for hosting
+    1. Create a VUE_APP_API_IP variable - Contains Device IP for hosting
     2. Create a DARK_SKY_API_KEY variable - Contains unique dark sky key
-    3. Create a VUE_APP_LAB_NAMES variable - contains array of lab names
+    3. Create a VUE_APP_LAB_NAMES variable - Contains array of lab names
     4. Create a VUE_APP_TICKETS_URL variable - Contains RSS feed for tickets
-    5. Create a VUE_APP_LICENCE_URL variable - contains link to licence data 
-    6. Create a VUE_APP_WEATHER_URL variable- contains weather data URL
+    5. Create a VUE_APP_LICENCE_URL variable - Contains link to licence data 
+    6. Create a VUE_APP_WEATHER_URL variable- Contains weather data URL
     7. Create a VUE_APP_URL_ALL variable - Contains 1st part of url for total PCs data 
     8. Create a VUE_APP_URL_ACTIVE variable - Contains 1st part of url for actives PCs data 
     9. Create a VUE_APP_ENVIRONMENT variable - Can switch between Dev (Real data) and Demo (Randomly generated data)
