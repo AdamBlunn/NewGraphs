@@ -47,7 +47,7 @@ Weather.vue gives a brief report on the weather in the local area.
 
 The weather component takes in weather data from the Dark Sky API. This data is taken  by the API hourly and updated inside the component every thirty minutes. This component also takes in the name of an icon and then compares this to a map structure containing all of the names and codes for weather icons, these codes are then used to call Icons via font awesome to the component. The weather types that are available are: rain, snow, cloudy, partly cloudy day, partly cloudy night, sleet, wind, clear day, clear night.
 
-Note: The API used is free up until a point, it can make 1000 calls per day for free, after that, the user will be charged $0.0001 per call.
+**Note:** The API used is free up until a point, it can make 1000 calls per day for free, after that, the user will be charged $0.0001 per call.
 
 ### Tickets Component
 Tickets.vue displays the ten latest support tickets from the RSS feed.
@@ -56,7 +56,7 @@ This component recieves parsed RSS data from the tickets RSS Feed. Upon initiali
 
 In terms of the template section of this component, the display variables are added through _{{}}_ and the name of the person pushing the ticket is displayed in gold to highlight it to the user.
 
-This component also contains an algorthim that will generate dummy data via the faker library if the _VUE_APP_ENVIROMENT_ enviroment variable is set to _"Demo"_
+This component also contains an algorthim that will generate dummy data via the faker library if the _VUE_APP_ENVIRONMENT_ environment variable is set to _"Demo"_
 ### System Load and Memory Usage Component 
 Systemload.vue displays a line graph charting total system load and memory usage in GB.
 
@@ -64,7 +64,7 @@ This component displays a graph _(via ApexCharts)_ that shows the system load an
 
 Local storage has also been used to save all data from this graph so that something can be shown if there an error occurs. 
 
-This component can also randomly generate data if the _VUE_APP_ENVIROMENT_ enviroment variable is set to _"Demo"_, this done via the **faker** library, the **faker** version of this dashboard refreshes every ten minutes. 
+This component can also randomly generate data if the _VUE_APP_ENVIROnMENT_ environment variable is set to _"Demo"_, this done via the **faker** library, the **faker** version of this dashboard refreshes every ten minutes. 
 
 ### Labs Review Component
 Labs.vue displays the capacity of the labs by showing the numeber for active PCs and the number of free PCs. 
@@ -74,7 +74,7 @@ The Labs review component takes in two pieces of data for each lab, the number o
 In the event of an error, local storage data will be pulled into the graph to ensure that it still contains partially valid
 data until the issue can be resolved. 
 
-This Component also has a dummy data generator via **faker** this will be used when _VUE_APP_ENVIROMENT_ is set to _"Demo"_
+This Component also has a dummy data generator via **faker** this will be used when _VUE_APP_ENVIROnMENT_ is set to _"Demo"_
 
 This component updates every 100 seconds.
 
@@ -90,7 +90,7 @@ This is also where all of the top level styling for each component is done (prim
 This component also assigns several variables to be passed to the individual components, including the amount of seconds before a refresh and the _apiConfig_ Variable. The _apiConfig_ variable is then passed into any components that it is required in. 
 
 #### apiConfig Variable
-The _apiConfig_ variable is an object that contains all of the enviromental variables for this website. These are primarily urls to be read by either the CORS proxy, or the RSS parser. This variable is then passed into the relevent componenents so that the relevent URLs can be used. 
+The _apiConfig_ variable is an object that contains all of the environmental variables for this website. These are primarily urls to be read by either the CORS proxy, or the RSS parser. This variable is then passed into the relevent componenents so that the relevent URLs can be used. 
 
 ## Scripts
 
