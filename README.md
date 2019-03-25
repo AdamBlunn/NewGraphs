@@ -29,10 +29,19 @@ To install this web application, follow these steps:
     7. Create a VUE_APP_URL_ALL variable - Contains 1st part of url for total PCs data 
     8. Create a VUE_APP_URL_ACTIVE variable - Contains 1st part of url for actives PCs data 
     9. Create a VUE_APP_ENVIRONMENT variable - Can switch between Dev (Real data) and Demo (Randomly generated data)
-6. Run refreshWeather.sh
-7. Run cors_proxy.js
-8. Run gridengine.js
+6. Run _refreshWeather.sh_
+7. Run *cors_proxy.js*
+8. Run _gridengine.js_
 9. Run server with npm run serve 
+
+## Run Project Demo
+1. Download or clone repository
+    1. If zipped, extract the project folder
+2. Using the terminal, move to the project folder
+3. Run command: npm install
+4. Create .env file
+    1. Create a field called VUE_APP_ENVIRONMENT  and set it equal to _‘Dev’_
+5. Run Command npm run serve to create server
 
 
 ## Components
@@ -74,7 +83,7 @@ The Labs review component takes in two pieces of data for each lab, the number o
 In the event of an error, local storage data will be pulled into the graph to ensure that it still contains partially valid
 data until the issue can be resolved. 
 
-This Component also has a dummy data generator via **faker** this will be used when _VUE_APP_ENVIROnMENT_ is set to _"Demo"_
+This Component also has a dummy data generator via **faker** this will be used when _VUE_APP_ENVIRONMENT_ is set to _"Demo"_
 
 This component updates every 100 seconds.
 
