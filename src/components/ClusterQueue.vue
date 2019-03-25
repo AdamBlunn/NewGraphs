@@ -10,11 +10,18 @@
 const axios = require("axios");
 
 import proxy from "../modules/cors-client.js";
+const faker = require("faker");
+
 export default {
   //Export for Vue
   props: ["refreshSeconds"],
   mounted() {
-    setInterval(this.refresh, this.refreshSeconds * 1000); //refresh after a set number of seconds
+    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+      //DELETE WHEN I'M GONE, JUST USE this.getValues()
+      this.fakeValues();
+    } else {
+      this.refresh();
+    } //refresh after a set number of seconds
     //get existing data through local storage
     let pendingCache = localStorage.getItem("Pending");
 
@@ -27,7 +34,12 @@ export default {
       this.running = JSON.parse(runningCache);
     }
     //run refresh on start up
-    this.refresh();
+    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+      //DELETE WHEN I'M GONE, JUST USE this.getValues()
+      setInterval(this.fakeValues, 5000);
+    } else {
+      setinterval(this.refresh, 5000);
+    }
   },
   data() {
     return {
@@ -89,6 +101,11 @@ export default {
           this.updateValues(this.pending, this.running);
           this.error = true;
         });
+    },
+    fakeValues() {
+      let tempPending = faker.random.number(400);
+      let tempRunning = faker.random.number(400);
+      this.updateValues(tempPending, tempRunning);
     },
     //Update Values method - Recieves values from refresh and assigns them to the proper pending and running values, then calls update Chart function
     updateValues(newPending, newRunning) {
