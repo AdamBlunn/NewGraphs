@@ -35,6 +35,7 @@ To install this web application, follow these steps:
 9. Run server with npm run serve 
 
 ## Run Project Demo
+To run a demo version of this program that outputs randomly generated data, follow the steps below:
 1. Download or clone repository
     1. If zipped, extract the project folder
 2. Using the terminal, move to the project folder
