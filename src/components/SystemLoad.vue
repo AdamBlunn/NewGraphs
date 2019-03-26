@@ -25,7 +25,7 @@ export default {
     }
     //begin fetching data
     // Check for demo Version - DELETE WHEN I'M GONE - Replace with setInterval(this.getValues, 100000);
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.getValues()
       setInterval(this.fakeMemory, 10000000);
       setInterval(this.fakeLoad, 10000000);

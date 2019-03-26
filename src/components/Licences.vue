@@ -26,7 +26,7 @@ export default {
   props: ["refreshSeconds"],
   mounted() {
     //Check for demo version
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.refresh()
       setInterval(this.fakeValues, this.refreshSeconds * 1000); //DELETE WHEN I'M GONE
     } else {
@@ -46,7 +46,7 @@ export default {
     if (lengthCache) {
       this.licenceExpired = JSON.parse(expiredLicencesCache);
     }
-    if (process.env.VUE_APP_ENVIROMENT == "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT == "Demo") {
       //check for dem version DELETE WHEN I'M GONE, JUST USE this.refresh()
       this.fakeValues(); //generate dummy values  DELETE WHEN I'M GONE
     } else {

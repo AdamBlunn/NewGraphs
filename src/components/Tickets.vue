@@ -17,7 +17,7 @@ const faker = require("faker");
 export default {
   props: ["refreshSeconds"],
   mounted() {
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       // Check for demo version DELETE WHEN I'M GONE, USE setInterval(this.refresh, 100000); INSTEAD
       setInterval(this.generateFaker, this.refreshSeconds * 1000); //generate dummy values DELETE WHEN I'M GONE
     } else {
@@ -28,7 +28,7 @@ export default {
     if (ticketsCache) {
       this.tickets = JSON.parse(ticketsCache);
     } //Check for demo version on component load
-    if (process.env.VUE_APP_ENVIROMENT == "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT == "Demo") {
       this.generateFaker(); //generate fake values
     } else {
       this.refresh();
@@ -43,7 +43,7 @@ export default {
   methods: {
     refresh() {
       proxy
-        .get(`http://${process.env.VUE_APP_API_IP}:3018/`) //fetch data from the tickets enviroment variables
+        .get(`http://${process.env.VUE_APP_API_IP}:3018/`) //fetch data from the tickets environment variables
         .then(response => {
           // handle success
           let ticket = response.data.items;

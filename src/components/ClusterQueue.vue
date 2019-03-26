@@ -16,7 +16,7 @@ export default {
   //Export for Vue
   props: ["refreshSeconds"],
   mounted() {
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.getValues()
       this.fakeValues();
     } else {
@@ -34,11 +34,11 @@ export default {
       this.running = JSON.parse(runningCache);
     }
     //run refresh on start up
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.getValues()
       setInterval(this.fakeValues, 5000);
     } else {
-      setinterval(this.refresh, 5000);
+      setInterval(this.refresh, 5000);
     }
   },
   data() {
@@ -88,7 +88,7 @@ export default {
     // Refresh Method - Takes in values for pending and running.
     refresh() {
       proxy
-        .get(`http://${process.env.VUE_APP_API_IP}:3001/`) //get data from al link obscured by enviroment variables
+        .get(`http://${process.env.VUE_APP_API_IP}:3001/`) //get data from al link obscured by environment variables
         .then(response => {
           // handle success
           let tempPending = response.data.stats.pending;

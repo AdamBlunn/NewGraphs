@@ -74,7 +74,7 @@ This component displays a graph _(via ApexCharts)_ that shows the system load an
 
 Local storage has also been used to save all data from this graph so that something can be shown if there an error occurs. 
 
-This component can also randomly generate data if the _VUE_APP_ENVIROnMENT_ environment variable is set to _"Demo"_, this done via the **faker** library, the **faker** version of this dashboard refreshes every ten minutes. 
+This component can also randomly generate data if the _VUE_APP_ENVIRONMENT_ environment variable is set to _"Demo"_, this done via the **faker** library, the **faker** version of this dashboard refreshes every ten minutes. 
 
 ### Labs Review Component
 Labs.vue displays the capacity of the labs by showing the numeber for active PCs and the number of free PCs. 

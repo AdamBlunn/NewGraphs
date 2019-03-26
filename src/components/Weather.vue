@@ -86,13 +86,13 @@ export default {
   },
   mounted() {
     // Check for demo Version - DELETE WHEN I'M GONE - Replace with setInterval(this.getValues, 100000);
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.getValues()
       setInterval(this.fakeValues, 10000);
     } else {
       setInterval(this.refresh, this.refreshSeconds * 1000); //refresh after alotted number of seconds
     }
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.getValues()
       this.fakeValues();
     } else {

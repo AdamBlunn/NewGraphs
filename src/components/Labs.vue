@@ -13,7 +13,7 @@ export default {
   props: ["apiconfig"],
   mounted() {
     // Check for demo Version - DELETE WHEN I'M GONE - Replace with setInterval(this.getValues, 100000);
-    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT === "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.getValues()
       setInterval(this.fakeValues, 100000);
     } else {
@@ -38,7 +38,7 @@ export default {
       url.push(this.urlActive + this.apiconfig.labnames[name]);
     }); //Create array of URLS by combining URL with lab name
     console.log(url);
-    if (process.env.VUE_APP_ENVIROMENT == "Demo") {
+    if (process.env.VUE_APP_ENVIRONMENT == "Demo") {
       //DELETE WHEN I'M GONE, JUST USE this.getValues()
       // check for demo version
       this.fakeValues(); //DELETE WHEN I'M GONE
