@@ -16,7 +16,7 @@
             Temperature:
             <span class="text-gold">{{forecast.temperature}}°c</span>
           </span>
-          
+
           <span
             class="inline-block bg-blue-test rounded-full px-3 py-1 text-base font-semibold text-white mr-2 ml-2 pb-2 mb-4"
           >
@@ -30,14 +30,14 @@
             Wind Gust:
             <span class="text-gold">{{forecast.windGust}}</span>
           </span>
-          
+
           <span
             class="inline-block bg-blue-test rounded-full px-3 py-1 text-base font-semibold text-white mr-2 ml-2 pb-2 mb-4"
           >
             Chance of Rain:
             <span class="text-gold">{{(forecast.precipProbability*100).toFixed(2)}}%</span>
           </span>
-          
+
           <span
             class="inline-block bg-blue-test rounded-full px-3 py-1 text-base font-semibold text-white mr-2 ml-2 pb-2 mb-4"
           >
@@ -53,6 +53,7 @@
 <script>
 //set up dependancies
 const axios = require("axios");
+const faker = require("faker");
 const icons = new Map([
   //Set up font awesome Icons in a key value pairs set up
   ["rain", "fas fa-cloud-rain"],
@@ -68,6 +69,7 @@ const icons = new Map([
 ]);
 let keyvalue = "";
 import proxy from "../modules/cors-client.js"; // import proxy
+
 export default {
   props: ["refreshSeconds", "apiconfig"], //enable props
   data() {
@@ -83,7 +85,19 @@ export default {
     };
   },
   mounted() {
-    setInterval(this.refresh, this.refreshSeconds * 1000); //refresh after alotted number of seconds
+    // Check for demo Version - DELETE WHEN I'M GONE - Replace with setInterval(this.getValues, 100000);
+    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+      //DELETE WHEN I'M GONE, JUST USE this.getValues()
+      setInterval(this.fakeValues, 10000);
+    } else {
+      setInterval(this.refresh, this.refreshSeconds * 1000); //refresh after alotted number of seconds
+    }
+    if (process.env.VUE_APP_ENVIROMENT === "Demo") {
+      //DELETE WHEN I'M GONE, JUST USE this.getValues()
+      this.fakeValues();
+    } else {
+      this.refresh(); //refresh after alotted number of seconds
+    }
     //get data through local storage
     let summaryCache = localStorage.getItem("Summary");
     if (summaryCache) {
@@ -127,6 +141,15 @@ export default {
           console.log(error);
           this.error = true;
         });
+    },
+    fakeValues() {
+      this.forecast.summary = "Partly Cloudy";
+      this.forecast.temperature = faker.random.number(20);
+      this.forecast.windSpeed = faker.random.number(60);
+      this.forecast.windGust = faker.random.number(40);
+      this.forecast.precipProbability = 0.2;
+      this.forecast.cloudCover = 0.45;
+      this.forecast.icon = "fas fa-cloud-sun";
     },
     updateValues(weather) {
       //assign weather data to an object
