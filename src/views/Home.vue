@@ -29,7 +29,11 @@
     <div
       class="border shadow bg-blue-test weather border-blue-test container-xl rounded float-right"
     >
-      <weather refresh-seconds="10" :apiconfig="apiConfig" class="text-grey-lightest text-center"/>
+      <weather
+        refresh-seconds="3600"
+        :apiconfig="apiConfig"
+        class="text-grey-lightest text-center"
+      />
     </div>
   </div>
 </template>
