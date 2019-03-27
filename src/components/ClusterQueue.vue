@@ -88,7 +88,7 @@ export default {
     // Refresh Method - Takes in values for pending and running.
     refresh() {
       proxy
-        .get(`http://${process.env.VUE_APP_API_IP}:3001/`) //get data from al link obscured by environment variables
+        .get(`http://${process.env.VUE_APP_CLUSTER_SERVER}:3001/`) //get data from al link obscured by environment variables
         .then(response => {
           // handle success
           let tempPending = response.data.stats.pending;

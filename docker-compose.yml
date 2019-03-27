@@ -27,17 +27,25 @@ services:
   tickets:
     image: localhost:5000/dashboard-graphs
     ports:
-      - "3000:3000"
+      - "3018:3018"
     expose:
       - "3000"
-    command: ["node", "./index.js"]
+    command: ["node", "./RSSparse.js"]
   weather:
     image: localhost:5000/dashboard-graphs
     ports:
       - "3002:3002"
     expose:
       - "3002"
-    command: ["node","./weather.js"]
+    command: ["/app/refreshWeather.sh"]
+  cors_proxy:
+    image: localhost:5000/dashboard-graphs
+    ports:
+      - "8111:8111"
+    expose:
+      - "8111"
+    command: ["node","./cors_proxy.js"]
+
     
   
 

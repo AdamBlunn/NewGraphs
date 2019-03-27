@@ -12,6 +12,7 @@ Vue.component("apexchart", VueApexCharts);
 
 Vue.config.productionTip = false;
 // Enable vue
+console.log(process.env.VUE_APP_LAB_NAMES)
 new Vue({
   router,
   render: h => h(App)

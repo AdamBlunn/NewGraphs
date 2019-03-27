@@ -43,7 +43,7 @@ export default {
   methods: {
     refresh() {
       proxy
-        .get(`http://${process.env.VUE_APP_API_IP}:3018/`) //fetch data from the tickets environment variables
+        .get(`http://${process.env.VUE_APP_TICKETS_SERVER}:3018/`) //fetch data from the tickets environment variables
         .then(response => {
           // handle success
           let ticket = response.data.items;
